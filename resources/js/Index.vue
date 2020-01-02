@@ -19,19 +19,5 @@ export default {
 </script>
 
 <style lang="scss">
-    @import './../sass/app.scss';
-    @import url('https://fonts.googleapis.com/css?family=Abel|Roboto&display=swap');
-* {
-    outline: none;
-    font-family: 'Abel', sans-serif;
-    color: $primary-text-color;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-}
-html {
-  overflow: inherit;
-  @include background;
-}
+
 </style>

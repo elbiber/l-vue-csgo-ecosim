@@ -1,8 +1,8 @@
 @mixin background {
   @if $show-home-image {
-    background-image: url('./assets/background.png');
+    background-image: url('/resources/assets/background-min.png');
     background-attachment: fixed;
-    background-size: cover;  
+    background-size: cover;
     &:after {
       content: '';
       position: fixed;
