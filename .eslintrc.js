@@ -3,7 +3,11 @@ module.exports = {
         browser: true,
         es6: true
     },
-    extends: ["eslint:recommended", "plugin:vue/essential"],
+    extends: [
+        //"eslint:recommended",
+        //"plugin:vue/essential"
+        "plugin:vue/recommended"
+    ],
     globals: {
         Atomics: "readonly",
         SharedArrayBuffer: "readonly"
@@ -31,7 +35,7 @@ module.exports = {
         "no-param-reassign": ["error", { props: false }],
         "no-underscore-dangle": "off",
         "no-var": "error",
-        "no-unused-vars:" : "off",
+        "no-unused-vars:": "off",
         "no-undef": "off"
     }
 };

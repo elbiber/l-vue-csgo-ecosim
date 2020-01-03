@@ -18,5 +18,6 @@
         <div id="app">
             <index></index>
         </div>
+        {{-- <script src="{{ mix('js/bundle.js') }}"></script> --}}
     </body>
 </html>

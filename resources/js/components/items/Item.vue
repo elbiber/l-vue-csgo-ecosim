@@ -3,13 +3,11 @@
     <div class="card-body">
       <router-link :to="{ name: 'item', params: { id }}">
         <h5>{{ name }}</h5>
+        <img
+          :src="getPathOfImage(image_filename)"
+          height="25"
+        >
       </router-link>
-      <p class="card-text">
-        {{ type }}
-      </p>
-      <p class="card-text">
-        {{ price }}
-      </p>
     </div>
   </div>
 </template>
@@ -37,17 +35,26 @@ export default {
             type:  Number,
             default: 0
         },
-        restricted_ot: {
+        restricted_to: {
+            type:  String,
+            default: 'none'
+        },
+        image_filename: {
             type:  String,
             default: 'none'
         }
     },
     mounted() {
         console.log(this.itemTitle)
+    },
+    methods: {
+        getPathOfImage(imageFileName) {
+            const images = require.context('../../../assets/images/equipment/', false, /\.png$/)
+            return images(`./${imageFileName}`)
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-     @import '~bootstrap/scss/bootstrap';
 </style>

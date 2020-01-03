@@ -25,7 +25,7 @@
 export default {
     data: () => ({
         links: [
-            { text: 'Simulator', route: '/' },
+            { text: 'Simulator', route: '/simulator' },
             { text: 'Items', route: '/items' },
             { text: 'Profile', route: '/profile' }
         ]

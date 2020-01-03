@@ -107,7 +107,7 @@ class ItemsTableSeeder extends Seeder
         ]);
         // Equipment
         Item::create([
-            'name' => 'Kevlar_Helmet',
+            'name' => 'Kevlar Helmet',
             'type' => 'equipment',
             'price' => 1000,
             'kill_award' => 0,

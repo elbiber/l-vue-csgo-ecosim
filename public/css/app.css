@@ -85,7 +85,7 @@
 
 html {
   overflow: inherit;
-  background-image: url("/resources/assets/background-min.png");
+  background-image: url(/images/background-min.png?641f477980330c3d7a665151ac1e9a99);
   background-attachment: fixed;
   background-size: cover;
 }
@@ -98,5 +98,10 @@ html:after {
   height: 100%;
   background: rgba(40, 43, 40, 0.9);
   z-index: -1;
+}
+
+.main-container {
+  width: 1170px;
+  margin: auto;
 }
 

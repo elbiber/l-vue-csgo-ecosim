@@ -26,4 +26,8 @@ html {
   overflow: inherit;
   @include background;
 }
+.main-container {
+    width: 1170px;
+    margin: auto;
+}
 
