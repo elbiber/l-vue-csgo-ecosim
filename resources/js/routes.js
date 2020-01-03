@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router'
 import Simulator from './components/Simulator'
-import Items from './components/Items'
+import Items from './components/items/Items'
+import Item from './components/items/Item'
 import Dashboard from './components/Dashboard'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
@@ -20,6 +21,11 @@ const routes = [
         path: '/items',
         name: 'items',
         component: Items
+    },
+    {
+        path: '/item/:id',
+        name: 'item',
+        component: Item
     },
     {
         path: '/signin',
