@@ -1,15 +1,21 @@
 <template>
-  <div class="card w-100">
-    <div class="card-body">
-      <router-link :to="{ name: 'item', params: { id }}">
-        <h5>{{ name }}</h5>
-        <img
-          :src="getPathOfImage(image_filename)"
-          height="25"
-        >
-      </router-link>
+  <router-link :to="{ name: 'item', params: { id }}">
+    <div class="item-container">
+      <div class="">
+        <h4 :class="restricted_to">
+          {{ name }}
+        </h4>
+        <p>Type:       {{ type.charAt(0).toUpperCase() + type.slice(1) }}</p>
+        <p>Price:      {{ price }}</p>
+        <p>Kill Award: {{ kill_award }}</p>
+        <p>Restricted to: {{ restricted_to }}</p>
+      </div>
+      <img
+        :src="getPathOfImage(image_filename)"
+        height="25"
+      >
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -44,9 +50,6 @@ export default {
             default: 'none'
         }
     },
-    mounted() {
-        console.log(this.itemTitle)
-    },
     methods: {
         getPathOfImage(imageFileName) {
             const images = require.context('../../../assets/images/equipment/', false, /\.png$/)
@@ -57,4 +60,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 </style>

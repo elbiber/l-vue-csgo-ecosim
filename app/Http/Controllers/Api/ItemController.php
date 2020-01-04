@@ -50,7 +50,7 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        //
+        return new ItemIndexResource(Item::findOrFail($id));
     }
 
     /**

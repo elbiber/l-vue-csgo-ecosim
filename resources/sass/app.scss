@@ -8,7 +8,7 @@
 @import 'mixins';
 
 @import 'navbar';
-
+@import './component_styles/items';
 // Bootstrap
 // @import '~bootstrap/scss/bootstrap';
 
@@ -29,5 +29,8 @@ html {
 .main-container {
     width: 1170px;
     margin: auto;
+    h1 {
+        margin-bottom: 1em;
+    }
 }
 

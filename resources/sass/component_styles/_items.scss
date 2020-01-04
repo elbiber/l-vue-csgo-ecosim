@@ -1,0 +1,25 @@
+
+/* Items */
+.category-container {
+      display: flex;
+      margin: 1em 0em;
+}
+
+/* Single Item */
+.item-container {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    background: rgba($secondary-background-color, 0.5);
+    padding: 1em;
+    margin: 0em 1em;
+    h4 {
+        margin-bottom: 1em;
+    }
+    .t {
+        color: $t-color;
+    }
+    .ct {
+        color: $ct-color;
+    }
+}
