@@ -39,7 +39,17 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->input('name'));
+        $item = new Item();
+        $item->name = $request->input('name');
+        $item->type = $request->input('type');
+        $item->price = $request->input('price');
+        $item->kill_award = $request->input('kill_award');
+        $item->restricted_to = $request->input('restricted_to');
+        $item->image_filename = $request->input('image_filename');
+        $item->save();
+
+        return redirect()->route('items.show', ['item' => $item->id]);
     }
 
     /**
