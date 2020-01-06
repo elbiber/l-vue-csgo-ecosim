@@ -14,12 +14,12 @@ class ItemsTableSeeder extends Seeder
     {
         // Pistols
         Item::create([
-            'name' => 'USP-S',
-            'type' => 'pistol',
+            'name' => "USP-S",
+            'type' => "pistol",
             'price' => 200,
             'kill_award' => 300,
-            'restricted_to' => 'ct',
-            'image_filename' => 'usp_s.png'
+            'restricted_to' => "ct",
+            'image_filename' => "usp_s.png"
         ]);
         Item::create([
             'name' => 'Glock-18',
