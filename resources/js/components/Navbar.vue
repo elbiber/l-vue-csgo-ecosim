@@ -1,22 +1,48 @@
 <template>
-  <div class="header" fixed="top">
+  <div
+    class="header"
+    fixed="top"
+  >
     <div class="left-side">
-    <h2 class="title">CSGO-ECOSIM</h2>
-    <nav>
-      <ul class="nav-links">
-        <li v-for="link in links" v-bind:key="link.text">
-          <router-link :to="link.route">{{ link.text }}</router-link>
-        </li>
-      </ul>
-    </nav>
+      <h2 class="title">
+        CSGO-ECOSIM
+      </h2>
+      <nav>
+        <ul class="nav-links">
+          <li
+            v-for="link in links"
+            :key="link.text"
+          >
+            <router-link :to="link.route">
+              {{ link.text }}
+            </router-link>
+          </li>
+        </ul>
+      </nav>
     </div>
     <div class="right-side">
-      <router-link v-if="isLoggedIn" to="/signin"><button v-on:click="logout">Sign out</button></router-link>
-      <router-link v-else to="/login"><button>Sign in</button></router-link>
-      <router-link v-if="!isLoggedIn" to="/register"><button>Sign Up</button></router-link>
+      <router-link
+        v-if="isLoggedIn"
+        to="/signin"
+      >
+        <button @click="logout">
+          Sign out
+        </button>
+      </router-link>
+      <router-link
+        v-else
+        to="/login"
+      >
+        <button>Sign in</button>
+      </router-link>
+      <router-link
+        v-if="!isLoggedIn"
+        to="/register"
+      >
+        <button>Sign Up</button>
+      </router-link>
     </div>
   </div>
-
 </template>
 
 
@@ -30,6 +56,12 @@ export default {
             { text: 'Profile', route: '/profile' }
         ]
     }),
+    computed: {
+        isLoggedIn() {
+            return false
+            //return this.$store.getters.isLoggedIn
+        }
+    },
     methods: {
         signOut() {
             // localStorage.removeItem('token')
@@ -38,12 +70,6 @@ export default {
             /*       this.$store.dispatch('logout').then(() => {
                 this.$router.push('/login')
             }) */
-        }
-    },
-    computed: {
-        isLoggedIn() {
-            return false
-            //return this.$store.getters.isLoggedIn
         }
     }
 }

@@ -30,8 +30,8 @@ class ItemsTableSeeder extends Seeder
             'image_filename' => 'glock_18.png'
         ]);
         Item::create([
-            'name' => 'USP-S',
-            'type' => 'Dual Berettas',
+            'name' => 'Dual Berettas',
+            'type' => 'pistol',
             'price' => 400,
             'kill_award' => 300,
             'restricted_to' => 'none',

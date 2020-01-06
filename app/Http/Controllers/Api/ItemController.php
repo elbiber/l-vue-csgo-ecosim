@@ -39,7 +39,9 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->input('name'));
+/*         $validatedData =  $request->validate([
+            'name' => 'required|max:100'
+        ]); */
         $item = new Item();
         $item->name = $request->input('name');
         $item->type = $request->input('type');

@@ -1,12 +1,19 @@
 <template>
-  <div>
+  <div class="main-container">
     <div v-if="loading">
       <h1>Loading.....</h1>
     </div>
     <div v-else>
-      <h1>
-        Stored Items
-      </h1>
+      <div class="items-header">
+        <h1>
+          Stored Items
+        </h1>
+        <button>
+          <router-link :to="'/items/create'">
+            Create Item
+          </router-link>
+        </button>
+      </div>
       <div
         v-for="(category, index) in sortedItemsInCategories"
         :key="index"

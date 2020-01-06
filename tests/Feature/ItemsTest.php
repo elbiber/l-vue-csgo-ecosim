@@ -38,9 +38,16 @@ class ItemsTest extends TestCase
      */
     public function testStoreValid()
     {
-        $response = $this->get('/items');
-        // $response->assertSeeText('No items stored');
-        $response->assertStatus(200);
+
+    }
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     */
+    public function testStoreFail()
+    {
+
     }
 
 

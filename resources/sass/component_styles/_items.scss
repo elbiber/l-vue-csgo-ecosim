@@ -1,5 +1,12 @@
 
 /* Items */
+
+.items-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
 .category-container {
       display: flex;
       margin: 1em 0em;
