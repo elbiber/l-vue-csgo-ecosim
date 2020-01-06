@@ -50,10 +50,12 @@ export default {
         this.loading = true
         axios.get('/api/items').then(response => {
             this.items = response.data.data
+            console.log(this.items)
             const types = ['pistol', 'heavy', 'smg', 'rifle', 'grenade', 'equipment']
             types.forEach(type => {
                 this.sortedItemsInCategories.push(this.items.filter(item => item.type === type).sort(this.sortByRestriction))
             })
+            console.log(this.sortedItemsInCategories)
             this.loading = false
         })
     },

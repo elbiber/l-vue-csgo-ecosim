@@ -2156,12 +2156,14 @@ __webpack_require__.r(__webpack_exports__);
     this.loading = true;
     axios.get('/api/items').then(function (response) {
       _this.items = response.data.data;
+      console.log(_this.items);
       var types = ['pistol', 'heavy', 'smg', 'rifle', 'grenade', 'equipment'];
       types.forEach(function (type) {
         _this.sortedItemsInCategories.push(_this.items.filter(function (item) {
           return item.type === type;
         }).sort(_this.sortByRestriction));
       });
+      console.log(_this.sortedItemsInCategories);
       _this.loading = false;
     });
   },
