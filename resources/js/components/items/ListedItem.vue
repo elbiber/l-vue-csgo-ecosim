@@ -11,7 +11,7 @@
         <p>Restricted to: {{ restricted_to }}</p>
       </div>
       <img
-        :src="getPathOfImage(image_filename)"
+        :src="'/images/' + image_filename"
         height="25"
       >
     </div>
@@ -48,12 +48,6 @@ export default {
         image_filename: {
             type:  String,
             default: 'none'
-        }
-    },
-    methods: {
-        getPathOfImage(imageFileName) {
-            const images = require.context('../../../assets/images/equipment/', false, /\.png$/)
-            return images(`./${imageFileName}`)
         }
     }
 }

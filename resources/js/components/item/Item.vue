@@ -8,7 +8,7 @@
       class="item-container"
     >
       <img
-        :src="pathOfFileImage"
+        :src="'/images/' + item.image_filename"
         height="50"
       >
     </div>
@@ -25,12 +25,6 @@ export default {
         return {
             item: null,
             loading: false
-        }
-    },
-    computed: {
-        pathOfFileImage() {
-            const images = require.context('../../../assets/images/equipment/', false, /\.png$/)
-            return images(`./${this.item.image_filename}`)
         }
     },
     created() {
