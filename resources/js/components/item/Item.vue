@@ -9,6 +9,7 @@
     >
       <img
         :src="'/images/' + item.image_filename"
+        onerror="this.src='/images/no_image.png';"
         height="50"
       >
     </div>

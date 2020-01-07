@@ -2,31 +2,40 @@
 /* Items */
 
 .items-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1em;
-}
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+    button {
+    margin-left: 1em;
+    padding: 0.8em 1.6em;
+    background-color: rgba($secondary-background-color, 1.0);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+  }
 
+  button:hover {
+    background-color: $hover-color;
+  }
+}
 .category-container {
-      display: flex;
-      margin: 1em 0em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 1.5em;
+  column-gap: 2em;
 }
-
-/* Single Item */
 .item-container {
-    display: flex;
-    width: 300px;
-    justify-content: space-between;
-    background: rgba($secondary-background-color, 0.5);
-    padding: 1em;
-    margin: 0em 1em;
-    h4 {
-        margin-bottom: 1em;
-    }
-    .t {
-        color: $t-color;
-    }
-    .ct {
-        color: $ct-color;
-    }
+  display: flex;
+  justify-content: space-between;
+  background: rgba($secondary-background-color, 0.5);
+  padding: 1em;
+  h4 {
+      margin-bottom: 1em;
+  }
+  .t {
+      color: $t-color;
+  }
+  .ct {
+      color: $ct-color;
+  }
 }

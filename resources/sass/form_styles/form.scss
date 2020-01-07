@@ -41,8 +41,12 @@
 
     }
 
-    .invalid {
-      border-color: red;
+    .is-invalid {
+        border-color: $error-color-red;
+        // border-width: 0.2em;
+    }
+    .invalid-feedback {
+        color: $error-color-red;
     }
     p {
       font-size: 0.8em;

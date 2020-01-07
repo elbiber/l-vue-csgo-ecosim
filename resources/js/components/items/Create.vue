@@ -1,3 +1,4 @@
+
 <template>
   <div
     class="form-container"
@@ -17,6 +18,8 @@
           placeholder="Item name"
           required
           autofocus
+          :class="[ {'is-invalid': errorFor('name') }]"
+          @keyup.enter="createItem"
         >
       </div>
       <div class="input-container">
@@ -112,26 +115,47 @@ export default {
     data() {
         return {
             item : {
-                name: null,
-                type: null,
-                price: null,
-                kill_award: null,
-                restricted_to: null,
-                image_filename: null
-            }
+                name: 'Test',
+                type: 'pistol',
+                price: 1000,
+                kill_award: 200,
+                restricted_to: 'none',
+                image_filename: 'test.png'
+            },
+            status: null,
+            errors: null
 
+        }
+    },
+    computed: {
+        hasErrors() {
+            return 422 === this.status && this.errors !== null
+        },
+        hasAvailability() {
+            return 200 === this.status
+        },
+        noAvailability() {
+            return 404 === this.status
         }
     },
     methods: {
         createItem() {
             console.log(this.item)
             axios.post('/api/items', this.item)
+                .then(response => {
+                    this.status = response.status
+                })
+                .catch(error => {
+                    if (422 === error.response.status) {
+                        this.errors = error.response.data.errors
+                    }
+                    this.status =error.response.status
+                })
+                .then(() => this.loading = false)
+        },
+        errorFor(field) {
+            return this.hasErrors && this.errors[field] ? this.errors[field] : null
         }
     }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
-

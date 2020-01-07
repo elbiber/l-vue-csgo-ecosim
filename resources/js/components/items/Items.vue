@@ -21,8 +21,8 @@
         <h3>{{ itemCategories[index] }}</h3>
         <div class="category-container">
           <div
-            v-for="item in category"
-            :key="item.name"
+            v-for="(item, itemIndex) in category"
+            :key="item.name + itemIndex"
           >
             <listed-item v-bind="item" />
           </div>
@@ -57,12 +57,10 @@ export default {
         this.loading = true
         axios.get('/api/items').then(response => {
             this.items = response.data.data
-            console.log(this.items)
             const types = ['pistol', 'heavy', 'smg', 'rifle', 'grenade', 'equipment']
             types.forEach(type => {
                 this.sortedItemsInCategories.push(this.items.filter(item => item.type === type).sort(this.sortByRestriction))
             })
-            console.log(this.sortedItemsInCategories)
             this.loading = false
         })
     },
@@ -75,7 +73,7 @@ export default {
             if(b.restricted_to === 'none') rankA = 2
             if(b.restricted_to === 'ct') rankB = 1
             //console.log(rankA)
-            return ((rankA < rankB) ? 1 : -1)
+            return ((b.price < a.price) ? 1 : -1)
         }
     }
 }
