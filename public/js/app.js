@@ -2247,6 +2247,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -38177,224 +38217,285 @@ var render = function() {
         }
       },
       [
-        _c("div", { staticClass: "input-container" }, [
-          _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.item.name,
-                expression: "item.name"
-              }
-            ],
-            class: [{ "is-invalid": _vm.errorFor("name") }],
-            attrs: {
-              id: "name",
-              type: "text",
-              placeholder: "Item name",
-              required: "",
-              autofocus: ""
-            },
-            domProps: { value: _vm.item.name },
-            on: {
-              keyup: function($event) {
-                if (
-                  !$event.type.indexOf("key") &&
-                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                ) {
-                  return null
+        _c(
+          "div",
+          { staticClass: "input-container" },
+          [
+            _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.item.name,
+                  expression: "item.name"
                 }
-                return _vm.createItem($event)
+              ],
+              class: [{ "is-invalid": _vm.errorFor("name") }],
+              attrs: {
+                id: "name",
+                type: "text",
+                placeholder: "Item name",
+                required: "",
+                autofocus: ""
               },
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+              domProps: { value: _vm.item.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.item, "name", $event.target.value)
                 }
-                _vm.$set(_vm.item, "name", $event.target.value)
               }
-            }
-          })
-        ]),
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errorFor("name"), function(error, index) {
+              return _c(
+                "div",
+                { key: "name" + index, staticClass: "invalid-feedback" },
+                [_vm._v("\n        " + _vm._s(error) + "\n      ")]
+              )
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "input-container" }, [
-          _c("label", { attrs: { for: "type" } }, [_vm._v("Type")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
+        _c(
+          "div",
+          { staticClass: "input-container" },
+          [
+            _c("label", { attrs: { for: "type" } }, [_vm._v("Type")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.item.type,
+                    expression: "item.type"
+                  }
+                ],
+                class: [{ "is-invalid": _vm.errorFor("type") }],
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.item,
+                      "type",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "pistol" } }, [
+                  _vm._v("\n          Pistol\n        ")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "heavy" } }, [
+                  _vm._v("\n          Heavy\n        ")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "smg" } }, [
+                  _vm._v("\n          SMG\n        ")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "rifle" } }, [
+                  _vm._v("\n          Rifle\n        ")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "grenade" } }, [
+                  _vm._v("\n          Grenade\n        ")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "equipment" } }, [
+                  _vm._v("\n          Equipment\n        ")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.errorFor("type"), function(error, index) {
+              return _c(
+                "div",
+                { key: "type" + index, staticClass: "invalid-feedback" },
+                [_vm._v("\n        " + _vm._s(error) + "\n      ")]
+              )
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "input-container" },
+          [
+            _c("label", { attrs: { for: "price" } }, [_vm._v("Price")]),
+            _vm._v(" "),
+            _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.item.type,
-                  expression: "item.type"
+                  value: _vm.item.price,
+                  expression: "item.price"
                 }
               ],
+              class: [{ "is-invalid": _vm.errorFor("price") }],
+              attrs: {
+                id: "price",
+                type: "number",
+                placeholder: "Price",
+                required: ""
+              },
+              domProps: { value: _vm.item.price },
               on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.item,
-                    "type",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.item, "price", $event.target.value)
                 }
               }
-            },
-            [
-              _c("option", { attrs: { disabled: "", value: "" } }, [
-                _vm._v("\n          Please select one\n        ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "pistol" } }, [
-                _vm._v("\n          Pistol\n        ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "heavy" } }, [
-                _vm._v("\n          Heavy\n        ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "smg" } }, [
-                _vm._v("\n          SMG\n        ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "rifle" } }, [
-                _vm._v("\n          Rifle\n        ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "grenade" } }, [
-                _vm._v("\n          Grenade\n        ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "equipment" } }, [
-                _vm._v("\n          Equipment\n        ")
-              ])
-            ]
-          )
-        ]),
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errorFor("price"), function(error, index) {
+              return _c(
+                "div",
+                { key: "price" + index, staticClass: "invalid-feedback" },
+                [_vm._v("\n        " + _vm._s(error) + "\n      ")]
+              )
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "input-container" }, [
-          _c("label", { attrs: { for: "price" } }, [_vm._v("Price")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.item.price,
-                expression: "item.price"
-              }
-            ],
-            attrs: {
-              id: "price",
-              type: "number",
-              placeholder: "Price",
-              required: ""
-            },
-            domProps: { value: _vm.item.price },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.item, "price", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-container" }, [
-          _c("label", { attrs: { for: "kill_award" } }, [_vm._v("Kill Award")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.item.kill_award,
-                expression: "item.kill_award"
-              }
-            ],
-            attrs: {
-              id: "kill_award",
-              type: "number",
-              placeholder: "Kill Award",
-              required: ""
-            },
-            domProps: { value: _vm.item.kill_award },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.item, "kill_award", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-container" }, [
-          _c("label", { attrs: { for: "restricted_to" } }, [
-            _vm._v("Restricted To")
-          ]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
+        _c(
+          "div",
+          { staticClass: "input-container" },
+          [
+            _c("label", { attrs: { for: "kill_award" } }, [
+              _vm._v("Kill Award")
+            ]),
+            _vm._v(" "),
+            _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.item.restricted_to,
-                  expression: "item.restricted_to"
+                  value: _vm.item.kill_award,
+                  expression: "item.kill_award"
                 }
               ],
+              class: [{ "is-invalid": _vm.errorFor("kill_award") }],
+              attrs: {
+                id: "kill_award",
+                type: "number",
+                placeholder: "Kill Award",
+                required: ""
+              },
+              domProps: { value: _vm.item.kill_award },
               on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.item,
-                    "restricted_to",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.item, "kill_award", $event.target.value)
                 }
               }
-            },
-            [
-              _c("option", { attrs: { disabled: "", value: "" } }, [
-                _vm._v("\n          Please select one\n        ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "none" } }, [
-                _vm._v("\n          No Restriction\n        ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "ct" } }, [
-                _vm._v("\n          Coutner Terrorists\n        ")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "t" } }, [
-                _vm._v("\n          Terrorists\n        ")
-              ])
-            ]
-          )
-        ]),
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errorFor("kill_award"), function(error, index) {
+              return _c(
+                "div",
+                { key: "kill_award" + index, staticClass: "invalid-feedback" },
+                [_vm._v("\n        " + _vm._s(error) + "\n      ")]
+              )
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "input-container" },
+          [
+            _c("label", { attrs: { for: "restricted_to" } }, [
+              _vm._v("Restricted To")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.item.restricted_to,
+                    expression: "item.restricted_to"
+                  }
+                ],
+                class: [{ "is-invalid": _vm.errorFor("restricted_to") }],
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.item,
+                      "restricted_to",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("\n          Please select one\n        ")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "none" } }, [
+                  _vm._v("\n          No Restriction\n        ")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "ct" } }, [
+                  _vm._v("\n          Coutner Terrorists\n        ")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "t" } }, [
+                  _vm._v("\n          Terrorists\n        ")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.errorFor("restricted_to"), function(error, index) {
+              return _c(
+                "div",
+                {
+                  key: "restricted_to" + index,
+                  staticClass: "invalid-feedback"
+                },
+                [_vm._v("\n        " + _vm._s(error) + "\n      ")]
+              )
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "input-container" }, [
           _c("label", { attrs: { for: "image_filename" } }, [
@@ -54467,8 +54568,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Development\xampp\htdocs\l-vue-csgo-ecosim\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Development\xampp\htdocs\l-vue-csgo-ecosim\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! e:\Development\xampp\htdocs\l-vue-csgo-ecosim\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! e:\Development\xampp\htdocs\l-vue-csgo-ecosim\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

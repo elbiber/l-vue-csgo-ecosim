@@ -19,19 +19,24 @@
           required
           autofocus
           :class="[ {'is-invalid': errorFor('name') }]"
-          @keyup.enter="createItem"
         >
+        <div
+          v-for="(error, index) in errorFor('name')"
+          :key="'name' + index"
+          class="invalid-feedback"
+        >
+          {{ error }}
+        </div>
       </div>
       <div class="input-container">
         <label for="type">Type</label>
-        <select v-model="item.type">
+        <select
+          v-model="item.type"
+          :class="[ {'is-invalid': errorFor('type') }]"
+        >
           <option
-            disabled
-            value=""
+            value="pistol"
           >
-            Please select one
-          </option>
-          <option value="pistol">
             Pistol
           </option>
           <option value="heavy">
@@ -50,6 +55,13 @@
             Equipment
           </option>
         </select>
+        <div
+          v-for="(error, index) in errorFor('type')"
+          :key="'type' + index"
+          class="invalid-feedback"
+        >
+          {{ error }}
+        </div>
       </div>
       <div class="input-container">
         <label for="price">Price</label>
@@ -59,8 +71,17 @@
           type="number"
           placeholder="Price"
           required
+          :class="[ {'is-invalid': errorFor('price') }]"
         >
+        <div
+          v-for="(error, index) in errorFor('price')"
+          :key="'price' + index"
+          class="invalid-feedback"
+        >
+          {{ error }}
+        </div>
       </div>
+
       <div class="input-container">
         <label for="kill_award">Kill Award</label>
         <input
@@ -69,13 +90,23 @@
           type="number"
           placeholder="Kill Award"
           required
+          :class="[ {'is-invalid': errorFor('kill_award') }]"
         >
+        <div
+          v-for="(error, index) in errorFor('kill_award')"
+          :key="'kill_award' + index"
+          class="invalid-feedback"
+        >
+          {{ error }}
+        </div>
       </div>
       <div class="input-container">
         <label for="restricted_to">Restricted To</label>
-        <select v-model="item.restricted_to">
+        <select
+          v-model="item.restricted_to"
+          :class="[ {'is-invalid': errorFor('restricted_to') }]"
+        >
           <option
-            disabled
             value=""
           >
             Please select one
@@ -90,6 +121,13 @@
             Terrorists
           </option>
         </select>
+        <div
+          v-for="(error, index) in errorFor('restricted_to')"
+          :key="'restricted_to' + index"
+          class="invalid-feedback"
+        >
+          {{ error }}
+        </div>
       </div>
       <div class="input-container">
         <label for="image_filename">Image Filename</label>
@@ -107,6 +145,8 @@
         Add Item to Database
       </button>
     </form>
+  </div>
+  </form>
   </div>
 </template>
 
