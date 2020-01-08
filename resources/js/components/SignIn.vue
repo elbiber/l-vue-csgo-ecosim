@@ -5,11 +5,11 @@
                 <div class="card">
                     <div class="card-header">Example Component</div>
 
-                    <div class="card-body">
+                            <div class="card-body">
                         I'm an example component.asdf
                     </div>
                 </div>
-            </div>
+                    </div>
         </div>
     </div>
 </template>

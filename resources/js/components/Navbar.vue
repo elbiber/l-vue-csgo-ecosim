@@ -23,7 +23,7 @@
     <div class="right-side">
       <router-link
         v-if="isLoggedIn"
-        to="/signin"
+        :to="{name: 'login'}"
       >
         <button @click="logout">
           Sign out
@@ -31,13 +31,13 @@
       </router-link>
       <router-link
         v-else
-        to="/login"
+        :to="{name: 'login'}"
       >
         <button>Sign in</button>
       </router-link>
       <router-link
         v-if="!isLoggedIn"
-        to="/register"
+        :to="{name: 'register'}"
       >
         <button>Sign Up</button>
       </router-link>

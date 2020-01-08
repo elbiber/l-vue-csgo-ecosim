@@ -180,7 +180,6 @@ export default {
     },
     methods: {
         createItem() {
-            console.log(this.item)
             axios.post('/api/items', this.item)
                 .then(response => {
                     this.status = response.status

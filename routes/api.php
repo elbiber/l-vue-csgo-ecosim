@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('/items', 'Api\ItemController')->only(['index', 'show', 'store']);
 
+Route::post('register', 'AuthController@register');
+Route::post('login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout');
+Route::get('user', 'AuthController@getAuthUser');

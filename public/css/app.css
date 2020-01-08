@@ -193,6 +193,21 @@
   margin-bottom: 15px;
 }
 
+.form-container .create-account {
+  margin: 16px 0px 10px;
+  padding: 15px 20px;
+  background: rgba(40, 43, 40, 0.7);
+}
+
+.form-container a {
+  float: right;
+  color: #01BAEF;
+}
+
+.form-container a:hover {
+  color: #E7E247;
+}
+
 /*   .register-container, .successContainer {
     width: 300px;
     margin: auto;

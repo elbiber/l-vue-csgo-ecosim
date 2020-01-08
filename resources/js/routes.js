@@ -4,8 +4,8 @@ import Items from './components/items/Items'
 import Create from './components/items/Create.vue'
 import Item from './components/item/Item'
 import Dashboard from './components/Dashboard'
-import SignIn from './components/SignIn'
-import SignUp from './components/SignUp'
+import Login from './components/auth/Login.vue'
+import Register from './components/auth/Register.vue'
 
 const routes = [
     {
@@ -34,14 +34,14 @@ const routes = [
         component: Item
     },
     {
-        path: '/signin',
-        name: 'signin',
-        component: SignIn
+        path: '/login',
+        name: 'login',
+        component: Login
     },
     {
-        path: '/signup',
-        name: 'signup',
-        component: SignUp
+        path: '/register',
+        name: 'register',
+        component: Register
     }
 ]
 
