@@ -62,6 +62,9 @@
     padding: 15px 20px;
     background: rgba($secondary-background-color,0.7);
   }
+  button {
+    margin-top: 1em;
+  }
   a {
     float:right;
     color: $success-color-blue;
@@ -70,67 +73,3 @@
     }
   }
 }
-
-
-
-
-/*   .register-container, .successContainer {
-    width: 300px;
-    margin: auto;
-    h1 {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    a {
-      float:right;
-      color: $success-color-blue;
-      &:hover {
-        color: $hover-color;
-      }
-    }
-    .error-message {
-      // text-align: center;
-      background: rgba($error-color-red,0.4);
-      padding: 15px 20px;
-      margin: 0px 0px 10px;
-    }
-    .success-message {
-      // text-align: center;
-      background: rgba($success-color-blue,0.4);
-      padding: 15px 20px;
-      margin: 0px 0px 10px;
-    }
-    .register {
-        background: rgba($secondary-background-color,0.7);
-        padding: 20px;
-        margin: 16px 0px 0px;
-      button {
-        background: transparent;
-        color: white;
-        width: 100%;
-        margin: 20px 0px 0px;
-        padding: 6px 12px;
-        cursor: pointer;
-        &:hover {
-          background: rgba($secondary-background-color,0.7);
-        }
-      }
-      .disabledButton {
-        cursor: not-allowed;
-        color: white;
-      }
-      input {
-        width: 100%;
-        color: black;
-        padding: 6px 8px;
-        margin: 5px 0px 5px;
-      }
-      .invalid {
-        border-color: red;
-      }
-      p {
-        font-size: 0.8em;
-        margin-bottom: 15px;
-      }
-    }
-  }*/

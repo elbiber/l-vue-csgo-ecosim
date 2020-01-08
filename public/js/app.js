@@ -54566,7 +54566,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_item_Item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/item/Item */ "./resources/js/components/item/Item.vue");
 /* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Dashboard */ "./resources/js/components/Dashboard.vue");
 /* harmony import */ var _components_auth_Login_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/auth/Login.vue */ "./resources/js/components/auth/Login.vue");
-/* harmony import */ var _components_auth_Register_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/auth/Register.vue */ "./resources/js/components/auth/Register.vue");
+/* harmony import */ var _components_auth_Register_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/auth/Register.vue */ "./resources/js/components/auth/Register.vue");
 
 
 
@@ -54602,7 +54602,7 @@ var routes = [{
 }, {
   path: '/register',
   name: 'register',
-  component: _components_auth_Register_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+  component: _components_auth_Register_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   mode: 'history',
