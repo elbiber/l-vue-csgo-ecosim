@@ -36,6 +36,7 @@ module.exports = {
         "no-underscore-dangle": "off",
         "no-var": "error",
         "no-unused-vars:": "off",
-        "no-undef": "off"
+        "no-undef": "off",
+        "linebreak-style": ["error", process.env.NODE_ENV === 'prod' ? "unix" : "windows"]
     }
 };

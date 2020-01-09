@@ -57,6 +57,7 @@
 </template>
 
 <script>
+
 export default {
     data() {
         return {
@@ -95,7 +96,7 @@ export default {
                 .then(() => this.loading = false)
         },
         errorFor(field) {
-            return this.hasErrors && this.errors[field] ? this.errors[field] : null
+            return this.hasErrors && this.errors[field] ? this.errors[field] : null 
         }
     }
     
