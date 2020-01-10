@@ -22,25 +22,25 @@
     </div>
     <div class="right-side">
       <router-link
-        v-if="isLoggedIn"
+        v-if="isLoggedin"
         :to="{name: 'login'}"
       >
         <button @click="logout">
           Sign out
         </button>
       </router-link>
-      <router-link
-        v-else
-        :to="{name: 'login'}"
-      >
-        <button>Sign in</button>
-      </router-link>
-      <router-link
-        v-if="!isLoggedIn"
-        :to="{name: 'register'}"
-      >
-        <button>Sign Up</button>
-      </router-link>
+      <div v-else>
+        <router-link
+          :to="{name: 'login'}"
+        >
+          <button>Sign in</button>
+        </router-link>
+        <router-link
+          :to="{name: 'register'}"
+        >
+          <button>Sign Up</button>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -57,19 +57,14 @@ export default {
         ]
     }),
     computed: {
-        isLoggedIn() {
-            return false
-            //return this.$store.getters.isLoggedIn
+        isLoggedin() {
+            return this.$store.getters.isLoggedIn
         }
     },
     methods: {
-        signOut() {
-            // localStorage.removeItem('token')
-        },
         logout() {
-            /*       this.$store.dispatch('logout').then(() => {
-                this.$router.push('/login')
-            }) */
+            this.$store.commit('logout');
+            this.$router.push('/login');
         }
     }
 }

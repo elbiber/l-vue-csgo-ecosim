@@ -180,7 +180,7 @@ export default {
     },
     methods: {
         createItem() {
-            axios.post('/api/items', this.item)
+            axios.post('/api/available-items', this.item)
                 .then(response => {
                     this.status = response.status
                 })

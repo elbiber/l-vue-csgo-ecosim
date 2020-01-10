@@ -1,29 +1,29 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+export function registerUser(credentials){
+    return new Promise((res,rej)=>{
+        axios.post('/api/auth/register', credentials)
+            .then(response => {
+                res(response.dat)
+            })
+            .catch(err => {
+                rej('An error occured.. try again later.')
+            })
+    })
+}
 
-Vue.use(Vuex)
-export default new Vuex.Store({
-    state: {
-        status: '',
-        token: null,
-        user: null
-    },
-    mutations: {
+export function login(credentials){
+    return new Promise((res,rej)=>{
+        axios.post('/api/auth/login', credentials)
+            .then(response =>  res(response))
+            .catch(err => rej(err))
+    })
+}
 
-    },
-    actions: {
-        register() {
+export function getLoggedinUser(){
+    const userStr = localStorage.getItem('user')
 
-        },
-        async login(_, credentials) {
-            let response = axios.post('/api/login', this.loginData)
-            console.log(response)
-        },
-        logout() {
-            
-        }
-    },
-    getters: {
-        
+    if(!userStr){
+        return null
     }
-})
+
+    return JSON.parse(userStr)
+}

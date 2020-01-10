@@ -3,17 +3,17 @@
     <h1>Sign in</h1>
     <form 
       novalidate
-      @submit.prevent="login"
+      @submit.prevent="authenticate"
     >
       <div class="input-container">
         <label>Email</label>
         <input
-          v-model="loginData.email"
+          v-model="formLogin.email"
           type="email"
           placeholder="Enter your email address..."
           required
           autofocus
-          :class="[ {'is-invalid': errorFor('email') }]"
+          :class="[ {'is-invalid': errorFor('email') || wrongCredentials }]"
         >
         <div
           v-for="(error, index) in errorFor('email')"
@@ -26,11 +26,11 @@
       <div class="input-container">
         <label>Password<router-link to="/forgotpassword">Forgot Password?</router-link></label>
         <input
-          v-model="loginData.password"
+          v-model="formLogin.password"
           required
           type="password"
           placeholder="Password"
-          :class="[ {'is-invalid': errorFor('password') }]"
+          :class="[ {'is-invalid': errorFor('password') || wrongCredentials }]"
         >
         <div
           v-for="(error, index) in errorFor('password')"
@@ -57,12 +57,12 @@
 </template>
 
 <script>
-
+import { login } from './../../auth'
 export default {
     data() {
         return {
-            loginData: {
-                email: 'willy@contact-weise.de',
+            formLogin: {
+                email: 'wilber.heller@example.com',
                 password: '1234'
             },
             status: null,
@@ -73,6 +73,9 @@ export default {
         hasErrors() {
             return 422 === this.status && this.errors !== null
         },
+        wrongCredentials() {
+            return 401 === this.status
+        },
         hasAvailability() {
             return 200 === this.status
         },
@@ -81,19 +84,23 @@ export default {
         }
     },
     methods: {
-        login() {
-            axios.post('/api/login', this.loginData)
-                .then(response => {
+        authenticate(){
+            this.$store.dispatch('login')
+
+            login(this.$data.formLogin)
+                  .then(response => {
                     console.log(response)
-                    this.status = response.status
+                    this.$store.commit('loginSuccess', response.data)
+                    this.$router.push({ path: '/dashboard' })
                 })
                 .catch(error => {
                     if (422 === error.response.status) {
                         this.errors = error.response.data.errors
                     }
+                    
                     this.status =error.response.status
+                    this.$store.commit('loginFailed', { error })
                 })
-                .then(() => this.loading = false)
         },
         errorFor(field) {
             return this.hasErrors && this.errors[field] ? this.errors[field] : null 

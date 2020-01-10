@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemsTable extends Migration
+class CreateAvailableItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('available_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-
+            
             $table->char('name');
             $table->char('type');
             $table->unsignedBigInteger('price');
@@ -24,7 +24,6 @@ class CreateItemsTable extends Migration
             $table->char('restricted_to');
             $table->char('image_filename');
         });
-        
     }
 
     /**
@@ -34,6 +33,6 @@ class CreateItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('available_items');
     }
 }

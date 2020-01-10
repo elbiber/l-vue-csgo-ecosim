@@ -55,7 +55,7 @@ export default {
     },
     created() {
         this.loading = true
-        axios.get('/api/items').then(response => {
+        axios.get('/api/available-items').then(response => {
             this.items = response.data.data
             const types = ['pistol', 'heavy', 'smg', 'rifle', 'grenade', 'equipment']
             types.forEach(type => {
