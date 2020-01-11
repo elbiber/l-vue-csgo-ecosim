@@ -1,8 +1,10 @@
 <template>
-  <div class="container">
-    
-</div>
+  <div class="main-container">
+    Profile
+  </div>
 </template>
+
+
 
 <script>
 export default {

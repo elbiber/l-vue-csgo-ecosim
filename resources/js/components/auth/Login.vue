@@ -75,12 +75,6 @@ export default {
         },
         wrongCredentials() {
             return 401 === this.status
-        },
-        hasAvailability() {
-            return 200 === this.status
-        },
-        noAvailability() {
-            return 404 === this.status
         }
     },
     methods: {

@@ -23,6 +23,12 @@
     <div class="right-side">
       <router-link
         v-if="isLoggedin"
+        :to="{name: 'profile'}"
+      >
+        {{ currentUser.name  }}
+      </router-link>
+      <router-link
+        v-if="isLoggedin"
         :to="{name: 'login'}"
       >
         <button @click="logout">
@@ -59,12 +65,15 @@ export default {
     computed: {
         isLoggedin() {
             return this.$store.getters.isLoggedIn
+        },
+        currentUser() {
+            return this.$store.getters.currentUser
         }
     },
     methods: {
         logout() {
-            this.$store.commit('logout');
-            this.$router.push('/login');
+            this.$store.commit('logout')
+            this.$router.push('/login')
         }
     }
 }

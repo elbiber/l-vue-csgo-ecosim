@@ -14,14 +14,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/* Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+}); */
 
 Route::apiResource('/items', 'Api\ItemController')->only(['index', 'show', 'store']);
 Route::apiResource('/available-items', 'Api\AvailableItemController');
 
-Route::group([
+/* Route::group([
 
     'middleware' => 'api',
     'prefix' => 'auth'
@@ -33,4 +33,6 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 
-});
+}); */
+
+Route::post('/auth/login', 'Api\Auth\LoginController@login');
