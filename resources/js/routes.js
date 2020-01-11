@@ -61,7 +61,16 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
     //!!store.getters.isLoggedIn)
-/*     if (!!store.getters.isLoggedIn) {
+    
+    
+    
+    if(['login', 'register'].includes(to.name)){
+        if(store.state.isLoggedIn) next('dashboard')        
+    }
+    if(['profile'].includes(to.name)){
+        if(!store.state.isLoggedIn) next('login')        
+    }
+    /*     if (!!store.getters.isLoggedIn) {
         next('/login')
     } */
     // else next()

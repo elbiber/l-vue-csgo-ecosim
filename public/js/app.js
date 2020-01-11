@@ -55858,11 +55858,19 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 });
 router.beforeEach(function (to, from, next) {
   //!!store.getters.isLoggedIn)
+  if (['login', 'register'].includes(to.name)) {
+    if (_store__WEBPACK_IMPORTED_MODULE_1__["default"].state.isLoggedIn) next('dashboard');
+  }
 
+  if (['profile'].includes(to.name)) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_1__["default"].state.isLoggedIn) next('login');
+  }
   /*     if (!!store.getters.isLoggedIn) {
-          next('/login')
-      } */
+      next('/login')
+  } */
   // else next()
+
+
   next();
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
@@ -55882,6 +55890,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var user = Object(_auth__WEBPACK_IMPORTED_MODULE_0__["getLoggedinUser"])();
 /* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
   state: {
     currentUser: user,
     isLoggedIn: !!user,

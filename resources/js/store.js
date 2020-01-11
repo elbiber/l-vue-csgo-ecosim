@@ -3,6 +3,7 @@ import { getLoggedinUser } from './auth'
 const user = getLoggedinUser()
 
 export default {
+    namespaced:true,
     state: {
         currentUser: user,
         isLoggedIn: !!user,
