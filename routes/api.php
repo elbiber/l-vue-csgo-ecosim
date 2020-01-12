@@ -14,17 +14,28 @@ use Illuminate\Http\Request;
 |
 */
 
-/* Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-}); */
+});
+
+Route::get('/verified-only', function(Request $request){
+    dd('your are verified', $request->user()->name);
+})->middleware('auth:api','verified');
 
 Route::apiResource('/items', 'Api\ItemController')->only(['index', 'show', 'store']);
 Route::apiResource('/available-items', 'Api\AvailableItemController');
 
 Route::post('/register', 'Api\Auth\AuthController@register');
 Route::post('/login', 'Api\Auth\AuthController@login');
+
 Route::post('/password/email', 'Api\Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::post('/password/reset', 'Api\Auth\ResetPasswordController@reset');
+
+Route::get('/email/resend', 'Api\Auth\VerificationController@resend')->name('verification.resend');
+Route::get('/email/verify/{id}/{hash}', 'Api\Auth\VerificationController@verify')->name('verification.verify');
+
+
+
 
 /* Route::group([
 
