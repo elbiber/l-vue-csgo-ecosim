@@ -24,7 +24,7 @@ Route::apiResource('/available-items', 'Api\AvailableItemController');
 Route::post('/register', 'Api\Auth\AuthController@register');
 Route::post('/login', 'Api\Auth\AuthController@login');
 Route::post('/password/email', 'Api\Auth\ForgotPasswordController@sendResetLinkEmail');
-Route::post('/password/reset', 'Api\Auth\ForgotPasswordController@reset');
+Route::post('/password/reset', 'Api\Auth\ResetPasswordController@reset');
 
 /* Route::group([
 

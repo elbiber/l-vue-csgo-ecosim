@@ -36,8 +36,11 @@ class PasswordResetNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        
-        $urlToResetForm = "https://vueapp.test/vue-app/reset-password-form/?token=". $this->token;
+        if(env('APP_ENV',null) === 'local') {
+            $urlToResetForm = "http://l-vue-csgo-ecosim.test/resetpassword/?token=". $this->token;
+        } else {
+            $urlToResetForm = "https://fast-brushlands-96471.herokuapp.com/resetpassword/?token=". $this->token;
+        }    
         return (new MailMessage)
             ->subject(Lang::get('Reset Password Notification'))
             ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))

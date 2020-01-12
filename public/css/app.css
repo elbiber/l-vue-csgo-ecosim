@@ -193,10 +193,27 @@
   margin-bottom: 15px;
 }
 
-.form-container .create-account {
+.form-container .single-line-container,
+.form-container .message,
+.form-container .success-message,
+.form-container .error-message {
   margin: 16px 0px 10px;
   padding: 15px 20px;
   background: rgba(40, 43, 40, 0.7);
+}
+
+.form-container .message,
+.form-container .success-message,
+.form-container .error-message {
+  text-align: center;
+}
+
+.form-container .error-message {
+  color: #B80C09;
+}
+
+.form-container .success-message {
+  color: #01BAEF;
 }
 
 .form-container button {

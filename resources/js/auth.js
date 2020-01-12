@@ -18,6 +18,14 @@ export function login(credentials){
     })
 }
 
+export function resetPassword(credentials){
+    return new Promise((res,rej)=>{
+        axios.post('/api/password/email', credentials)
+            .then(response =>  res(response))
+            .catch(err => rej(err))
+    })
+}
+
 export function getLoggedinUser(){
     const userStr = localStorage.getItem('user')
 

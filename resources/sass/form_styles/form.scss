@@ -51,16 +51,26 @@
     p {
       font-size: 0.8em;
       margin-bottom: 15px;
-    }
-
-
-    
+    }   
 
   }
-  .create-account {
+  .single-line-container {
     margin: 16px 0px 10px;
     padding: 15px 20px;
     background: rgba($secondary-background-color,0.7);
+  }
+  .message {
+    @extend .single-line-container;
+    text-align: center;
+  }
+  .error-message {
+    @extend .message;
+    color: $error-color-red;
+  }
+
+  .success-message {
+    @extend .message;
+    color: $success-color-blue;
   }
   button {
     margin-top: 1em;

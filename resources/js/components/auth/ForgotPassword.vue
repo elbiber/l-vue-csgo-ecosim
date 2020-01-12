@@ -1,9 +1,9 @@
 <template>
   <div class="form-container">
-    <h1>Sign in</h1>
+    <h1>Reset your password</h1>
     <form 
       novalidate
-      @submit.prevent="authenticate"
+      @submit.prevent="reset"
     >
       <div class="input-container">
         <label>Email</label>
@@ -23,30 +23,19 @@
           {{ error }}
         </div>          
       </div>
-      <div class="input-container">
-        <label>Password<router-link to="/forgotpassword">Forgot Password?</router-link></label>
-        <input
-          v-model="formLogin.password"
-          required
-          type="password"
-          placeholder="Password"
-          :class="[ {'is-invalid': errorFor('password') || wrongCredentials }]"
-        >
-        <div
-          v-for="(error, index) in errorFor('password')"
-          :key="'password' + index"
-          class="invalid-feedback"
-        >
-          {{ error }}
-        </div>       
-      </div>
 
       <button type="submit">
-        Login
+        Send password reset email
       </button>
     </form>
+    <div v-if="hasTooManyRequests" class="error-message">    
+          Too many requests. Try again later.
+    </div>
+    <div v-if="emailSent" class="success-message">    
+        Reset link sent successfully!
+    </div>
     <div class="single-line-container">
-      <p>
+      <p class="is-invalid">
         New to CSGO-Ecosim?
         <router-link to="/register">
           Create an Account
@@ -57,13 +46,12 @@
 </template>
 
 <script>
-import { login } from './../../auth'
+import { resetPassword } from './../../auth'
 export default {
     data() {
         return {
             formLogin: {
-                email: 'wilber.heller@example.com',
-                password: '1234'
+                email: 'willy@contact-weise.de'
             },
             status: null,
             errors: null
@@ -73,27 +61,29 @@ export default {
         hasErrors() {
             return 422 === this.status && this.errors !== null
         },
+        hasTooManyRequests() {
+            return 429 === this.status
+        },
+        emailSent() {
+            return 200 === this.status
+        },
         wrongCredentials() {
             return 401 === this.status
         }
     },
     methods: {
-        authenticate(){
-            this.$store.dispatch('login')
-
-            login(this.$data.formLogin)
-                  .then(response => {
-                    console.log(response)
-                    this.$store.commit('loginSuccess', response.data)
-                    this.$router.push({ path: '/dashboard' })
+        reset(){
+            resetPassword(this.$data.formLogin)
+                .then(response => {
+                    console.log(response.status)
+                    this.status = response.status
                 })
                 .catch(error => {
+                    console.log( error.response)
                     if (422 === error.response.status) {
                         this.errors = error.response.data.errors
-                    }
-                    
+                    }                    
                     this.status =error.response.status
-                    this.$store.commit('loginFailed', { error })
                 })
         },
         errorFor(field) {

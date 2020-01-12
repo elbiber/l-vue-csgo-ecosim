@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard'
 
 import Login from './components/auth/Login.vue'
 import Register from './components/auth/Register.vue'
+import ForgotPassword from './components/auth/ForgotPassword.vue'
 import Profile from './components/Profile'
 
 import Simulator from './components/Simulator'
@@ -18,11 +19,23 @@ const routes = [
         name: 'dashboard',
         component: Dashboard
     },
+
     {
         path: '/login',
         name: 'login',
         component: Login
     },
+    {
+        path: '/register',
+        name: 'register',
+        component: Register
+    },
+    {
+        path: '/forgotpassword',
+        name: 'forgotpassword',
+        component: ForgotPassword
+    },
+
     {
         path: '/profile',
         name: 'profile',
