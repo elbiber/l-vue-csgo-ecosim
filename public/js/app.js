@@ -55072,7 +55072,7 @@ function registerUser(credentials) {
 }
 function login(credentials) {
   return new Promise(function (res, rej) {
-    axios.post('/api/auth/login', credentials).then(function (response) {
+    axios.post('/api/login', credentials).then(function (response) {
       return res(response);
     })["catch"](function (err) {
       return rej(err);

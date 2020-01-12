@@ -21,6 +21,11 @@ use Illuminate\Http\Request;
 Route::apiResource('/items', 'Api\ItemController')->only(['index', 'show', 'store']);
 Route::apiResource('/available-items', 'Api\AvailableItemController');
 
+Route::post('/register', 'Api\Auth\AuthController@register');
+Route::post('/login', 'Api\Auth\AuthController@login');
+Route::post('/password/email', 'Api\Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::post('/password/reset', 'Api\Auth\ForgotPasswordController@reset');
+
 /* Route::group([
 
     'middleware' => 'api',
@@ -35,4 +40,4 @@ Route::apiResource('/available-items', 'Api\AvailableItemController');
 
 }); */
 
-Route::post('/auth/login', 'Api\Auth\LoginController@login');
+// Route::post('/auth/login', 'Api\Auth\LoginController@login');

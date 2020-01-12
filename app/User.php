@@ -2,14 +2,16 @@
 
 namespace App;
 
-use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Laravel\Passport\HasApiTokens;
+use App\Notifications\PasswordResetNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -39,24 +41,16 @@ class User extends Authenticatable implements JWTSubject
     ];
         // Rest omitted for brevity
 
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
 
     /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
+     * Send the password reset notification.
      *
-     * @return array
+     * @param  string  $token
+     * @return void
      */
-    public function getJWTCustomClaims()
+    public function sendPasswordResetNotification($token)
     {
-        return [];
+        $this->notify(new PasswordResetNotification($token));
     }
 
     public function itemSets()
