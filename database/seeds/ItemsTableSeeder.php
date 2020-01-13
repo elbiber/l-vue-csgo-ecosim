@@ -260,7 +260,7 @@ class ItemsTableSeeder extends Seeder
             Item::create([
                 'name' => 'Defuse Kit',
                 'type' => 'equipment',
-                'price' => 4000,
+                'price' => 400,
                 'kill_award' => 0,
                 'restricted_to' => 'ct',
                 'image_filename' => 'defuse_kit.png'

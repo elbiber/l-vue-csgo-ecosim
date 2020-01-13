@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    // protected $fillable = ['name', 'type'];
+    public function itemsets()
+    {
+        return $this->belongsToMany('App\ItemSet')
+        ->withTimestamps();
+    }
 }
