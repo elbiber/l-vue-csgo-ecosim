@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\ItemSet;
+use App\Set;
 use App\User;
 use Faker\Generator as Faker;
 
@@ -17,7 +17,7 @@ $standardBuys = [
     
 
 
-$factory->define(ItemSet::class, function (Faker $faker)  use ($standardBuys) {
+$factory->define(Set::class, function (Faker $faker)  use ($standardBuys) {
     $userIds = User::all()->pluck('id')->toArray();
     return [
         'name' => Arr::random($standardBuys),

@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Resources\AvailableItemIndexResource;
-use App\AvailableItem;
-use Illuminate\Validation\Rule;
+use App\Set;
+use App\Http\Resources\SetResource;
 
-class AvailableItemController extends Controller
+class SetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,14 @@ class AvailableItemController extends Controller
      */
     public function index()
     {
-        return AvailableItemIndexResource::collection(
-            AvailableItem::all()
-        );
+        // return SetResource::collection(Set::get());//collection(auth()->user()->sets()->get());
+        /* $items = Set::find(1)->items;
+        return $items; */
+
+        //$itemSet = Set::find(1)->items()->get();// ->where('user_id', 1)->items()->get();
+
+        $itemSet = Set::where('user_id', 9)->find(1)->items()->get();
+        return $itemSet;
     }
 
     /**
@@ -40,30 +44,7 @@ class AvailableItemController extends Controller
      */
     public function store(Request $request)
     {
-        // dd('hlo');
-   /*      $validatedData =  $request->validate([
-            'name' => 'required|unique:items|max:100',
-            'type' => [
-                'required',
-                Rule::in(['pistol', 'heavy', 'smg', 'rifle', 'grenade', 'equipment']),
-            ],
-            'price' => 'required|numeric|gte:0',
-            'kill_award' => 'required|numeric|gte:0',
-            'restricted_to' => [
-                'required',
-                Rule::in(['none', 'ct', 't']),
-            ],
-            'image_filename' => 'required'
-        ]); */
-        $item = new AvailableItem();
-        $item->name = $request->input('name');
-        $item->type = $request->input('type');
-        $item->price = $request->input('price');
-        $item->kill_award = $request->input('kill_award');
-        $item->restricted_to = $request->input('restricted_to');
-        $item->image_filename = $request->input('image_filename');
-        $item->save();
-        return $item;
+        //
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenameItemItemSetTable extends Migration
+class CreateItemSetTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,13 @@ class RenameItemItemSetTable extends Migration
      */
     public function up()
     {
-        Schema::rename('item_item_set', 'item_item_sets');
+        Schema::create('item_set', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamps();
+
+            $table->bigInteger('item_id');
+            $table->bigInteger('set_id');
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class RenameItemItemSetTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_item_set');
+        Schema::dropIfExists('item_set');
     }
 }

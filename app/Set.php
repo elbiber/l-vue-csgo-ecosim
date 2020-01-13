@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ItemSet extends Model
+class Set extends Model
 {
     protected $fillable = [
         'name'

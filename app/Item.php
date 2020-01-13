@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    public function itemsets()
+    public function sets()
     {
-        return $this->belongsToMany('App\ItemSet')
-        ->withTimestamps();
+        return $this->belongsToMany(Set::class);
     }
 }
