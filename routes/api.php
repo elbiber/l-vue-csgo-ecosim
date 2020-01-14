@@ -23,8 +23,8 @@ Route::get('/verified-only', function(Request $request){
 })->middleware('auth:api','verified');
 
 Route::apiResource('/items', 'Api\ItemController')->only(['index', 'show', 'store']);
-Route::apiResource('/available-items', 'Api\AvailableItemController');
-Route::apiResource('/set', 'Api\SetController'); //->middleware('auth:api');
+
+Route::apiResource('/set', 'Api\SetController')->middleware('auth:api');
 
 Route::post('/register', 'Api\Auth\AuthController@register');
 Route::post('/login', 'Api\Auth\AuthController@login');

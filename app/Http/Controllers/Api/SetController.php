@@ -16,14 +16,16 @@ class SetController extends Controller
      */
     public function index()
     {
-        // return SetResource::collection(Set::get());//collection(auth()->user()->sets()->get());
+        $itemSets = SetResource::collection(auth()->user()->sets()->get());
         /* $items = Set::find(1)->items;
         return $items; */
 
         //$itemSet = Set::find(1)->items()->get();// ->where('user_id', 1)->items()->get();
 
-        $itemSet = Set::where('user_id', 9)->find(1)->items()->get();
-        return $itemSet;
+        // $itemSet = Set::where('user_id', 9)->find(1)->items()->get();
+        // $itemSet = Set::all();
+        // $itemSet = SetResource::collection(Set::get());
+        return $itemSets;
     }
 
     /**
@@ -55,7 +57,13 @@ class SetController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        // $itemSet = SetResource::collection(auth()->user()->sets()->get());
+        // dd();
+        // $itemSet = auth()->user()->sets()->find($id)->items()->get();
+        // $itemSet = auth()->user()->sets()->get();
+        $itemSet = SetResource::collection(auth()->user()->sets()->findOrFail($id)->items()->get());
+        return $itemSet;
     }
 
     /**
