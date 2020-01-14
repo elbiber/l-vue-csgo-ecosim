@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 
 
@@ -22,7 +23,17 @@ Route::get('/verified-only', function(Request $request){
     dd('your are verified', $request->user()->name);
 })->middleware('auth:api','verified');
 
-Route::apiResource('/items', 'Api\ItemController')->only(['index', 'show', 'store']);
+/* Route::apiResource('/items', 'Api\ItemController')
+    ->middleware(['auth:api', 'admin:api'])
+    ->only(['index', 'show', 'store']); */
+
+
+Route::group(['middleware' => ['auth:api', 'admin:api']], function() {
+    Route::apiResource('/items', 'Api\ItemController')
+        ->middleware(['auth:api', 'admin:api'])
+        ->only(['index', 'show', 'store']);
+    }
+);
 
 Route::apiResource('/set', 'Api\SetController')->middleware('auth:api');
 

@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_admin'
     ];
 
     /**
@@ -41,6 +41,10 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
         // Rest omitted for brevity
 
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
 
     /**
      * Send the password reset notification.
