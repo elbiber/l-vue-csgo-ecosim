@@ -46,7 +46,14 @@ class SetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:225'
+        ]);
+
+        $set = auth()->user()->sets()->create($request->all());
+        // dd($set);
+
+        return new SetResource($set);
     }
 
     /**
@@ -57,11 +64,6 @@ class SetController extends Controller
      */
     public function show($id)
     {
-        
-        // $itemSet = SetResource::collection(auth()->user()->sets()->get());
-        // dd();
-        // $itemSet = auth()->user()->sets()->find($id)->items()->get();
-        // $itemSet = auth()->user()->sets()->get();
         $itemSet = SetResource::collection(auth()->user()->sets()->findOrFail($id)->items()->get());
         return $itemSet;
     }

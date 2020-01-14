@@ -45,7 +45,7 @@ return [
         
         'sqlite_testing' => [
             'driver' => 'sqlite',
-            'url' => ':memory:'
+            'database' => ':memory:',
         ],
 
         'mysql' => [
