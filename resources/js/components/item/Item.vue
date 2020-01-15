@@ -30,7 +30,11 @@ export default {
     },
     created() {
         this.loading = true
-        axios.get(`/api/items/${this.$route.params.id}`)
+        const config = {
+
+            headers: { Authorization: 'Bearer ' + this.$store.getters.currentUser.token }
+        }
+        axios.get(`/api/items/${this.$route.params.id}`, config)
             .then(response => {
                 this.item = response.data.data
                 this.loading = false

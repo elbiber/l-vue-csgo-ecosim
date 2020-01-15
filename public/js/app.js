@@ -2342,7 +2342,12 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.loading = true;
-    axios.get("/api/items/".concat(this.$route.params.id)).then(function (response) {
+    var config = {
+      headers: {
+        Authorization: 'Bearer ' + this.$store.getters.currentUser.token
+      }
+    };
+    axios.get("/api/items/".concat(this.$route.params.id), config).then(function (response) {
       _this.item = response.data.data;
       _this.loading = false;
     });
