@@ -22,7 +22,7 @@ class Admin
             return $next($request);
         }
 
-        return Redirect::to('http://www.google.com');
-        // return redirect(RouteServiceProvider::HOME);
+        // return Redirect::to('http://www.google.com');
+        return redirect(RouteServiceProvider::HOME);
     }
 }

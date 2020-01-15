@@ -17,6 +17,13 @@
               {{ link.text }}
             </router-link>
           </li>
+          <li
+            v-if="currentUserIsAdmin"
+          >
+            <router-link to="/items">
+              Items
+            </router-link>
+          </li>
         </ul>
       </nav>
     </div>
@@ -25,7 +32,7 @@
         v-if="isLoggedin"
         :to="{name: 'profile'}"
       >
-        {{ currentUser.name  }}
+        {{ currentUser.name }}
       </router-link>
       <router-link
         v-if="isLoggedin"
@@ -58,7 +65,7 @@ export default {
     data: () => ({
         links: [
             { text: 'Simulator', route: '/simulator' },
-            { text: 'Items', route: '/items' },
+            // { text: 'Items', route: '/items' },
             { text: 'Profile', route: '/profile' }
         ]
     }),
@@ -68,6 +75,9 @@ export default {
         },
         currentUser() {
             return this.$store.getters.currentUser
+        },
+        currentUserIsAdmin() {
+            return this.$store.getters.currentUserIsAdmin
         }
     },
     methods: {

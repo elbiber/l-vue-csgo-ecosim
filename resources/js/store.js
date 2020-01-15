@@ -22,6 +22,18 @@ export default {
         currentUser(state){
             return state.currentUser
         },
+        currentUserIsAdmin(state) {
+            if(state.currentUser) {
+                return state.currentUser.is_admin == 1
+            }
+            return false
+        },
+        currentUserIsVerified(state) {
+            if(state.currentUser) {
+                return state.currentUser.email_verified_at
+            }
+            return false
+        },
         authError(state){
             return state.auth_error
         },
@@ -42,7 +54,6 @@ export default {
             state.isLoggedIn = true
             state.loading = false
             state.currentUser = Object.assign({}, payload.user, { token: payload.access_token })
-            console.log(state.currentUser)
             localStorage.setItem('user', JSON.stringify(state.currentUser))
         },
         loginFailed(state, payload){

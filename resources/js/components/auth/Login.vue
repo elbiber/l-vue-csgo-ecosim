@@ -45,6 +45,17 @@
         Login
       </button>
     </form>
+    <div v-if="wrongCredentials" class="error-message">    
+      Email or password invalid!
+    </div>
+    <div v-if="!emailVerified" class="error-message">    
+        <p>
+        Email not verified!
+        <router-link to="/register">
+          Resend link
+        </router-link>
+      </p>
+    </div>
     <div class="single-line-container">
       <p>
         New to CSGO-Ecosim?
@@ -62,11 +73,12 @@ export default {
     data() {
         return {
             formLogin: {
-                email: 'wilber.heller@example.com',
-                password: '1234'
+                email: 'willy@contact-weise.de',
+                password: '12345678'
             },
             status: null,
-            errors: null
+            errors: null,
+            emailVerified: true
         }
     },
     computed: {
@@ -75,6 +87,10 @@ export default {
         },
         wrongCredentials() {
             return 401 === this.status
+        },
+        currentUser() {
+            // console.log(this.$store.getters.currentUser.created_at)
+            return this.$store.getters.currentUser
         }
     },
     methods: {
@@ -82,10 +98,17 @@ export default {
             this.$store.dispatch('login')
 
             login(this.$data.formLogin)
-                  .then(response => {
-                    console.log(response)
+                .then(response => {
                     this.$store.commit('loginSuccess', response.data)
-                    this.$router.push({ path: '/dashboard' })
+                    console.log(this.currentUser.email_verified_at)
+                    if(this.currentUser.email_verified_at) {
+                        this.$router.push({ path: '/dashboard' })
+                    } else {
+                        this.emailVerified = false
+                        sendVerificationLink()
+                        this.$store.commit('logout')
+                    }
+                    
                 })
                 .catch(error => {
                     if (422 === error.response.status) {

@@ -1942,16 +1942,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       links: [{
         text: 'Simulator',
         route: '/simulator'
-      }, {
-        text: 'Items',
-        route: '/items'
-      }, {
+      }, // { text: 'Items', route: '/items' },
+      {
         text: 'Profile',
         route: '/profile'
       }]
@@ -1963,6 +1968,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     currentUser: function currentUser() {
       return this.$store.getters.currentUser;
+    },
+    currentUserIsAdmin: function currentUserIsAdmin() {
+      return this.$store.getters.currentUserIsAdmin;
     }
   },
   methods: {
@@ -1992,9 +2000,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  computed: {
+    currentUser: function currentUser() {
+      console.log(this.$store.getters.currentUser.created_at);
+      return this.$store.getters.currentUser;
+    }
   }
 });
 
@@ -2208,16 +2227,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       formLogin: {
-        email: 'wilber.heller@example.com',
-        password: '1234'
+        email: 'willy@contact-weise.de',
+        password: '12345678'
       },
       status: null,
-      errors: null
+      errors: null,
+      emailVerified: true
     };
   },
   computed: {
@@ -2226,6 +2257,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     wrongCredentials: function wrongCredentials() {
       return 401 === this.status;
+    },
+    currentUser: function currentUser() {
+      // console.log(this.$store.getters.currentUser.created_at)
+      return this.$store.getters.currentUser;
     }
   },
   methods: {
@@ -2234,13 +2269,20 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$store.dispatch('login');
       Object(_auth__WEBPACK_IMPORTED_MODULE_0__["login"])(this.$data.formLogin).then(function (response) {
-        console.log(response);
-
         _this.$store.commit('loginSuccess', response.data);
 
-        _this.$router.push({
-          path: '/dashboard'
-        });
+        console.log(_this.currentUser.email_verified_at);
+
+        if (_this.currentUser.email_verified_at) {
+          _this.$router.push({
+            path: '/dashboard'
+          });
+        } else {
+          _this.emailVerified = false;
+          sendVerificationLink();
+
+          _this.$store.commit('logout');
+        }
       })["catch"](function (error) {
         if (422 === error.response.status) {
           _this.errors = error.response.data.errors;
@@ -2581,8 +2623,13 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    var config = {
+      headers: {
+        Authorization: 'Bearer ' + this.$store.getters.currentUser.token
+      }
+    };
     this.loading = true;
-    axios.get('/api/available-items').then(function (response) {
+    axios.get('/api/items', config).then(function (response) {
       _this.items = response.data.data;
       var types = ['pistol', 'heavy', 'smg', 'rifle', 'grenade', 'equipment'];
       types.forEach(function (type) {
@@ -38122,19 +38169,35 @@ var render = function() {
         _c(
           "ul",
           { staticClass: "nav-links" },
-          _vm._l(_vm.links, function(link) {
-            return _c(
-              "li",
-              { key: link.text },
-              [
-                _c("router-link", { attrs: { to: link.route } }, [
-                  _vm._v("\n            " + _vm._s(link.text) + "\n          ")
-                ])
-              ],
-              1
-            )
-          }),
-          0
+          [
+            _vm._l(_vm.links, function(link) {
+              return _c(
+                "li",
+                { key: link.text },
+                [
+                  _c("router-link", { attrs: { to: link.route } }, [
+                    _vm._v(
+                      "\n            " + _vm._s(link.text) + "\n          "
+                    )
+                  ])
+                ],
+                1
+              )
+            }),
+            _vm._v(" "),
+            _vm.currentUserIsAdmin
+              ? _c(
+                  "li",
+                  [
+                    _c("router-link", { attrs: { to: "/items" } }, [
+                      _vm._v("\n            Items\n          ")
+                    ])
+                  ],
+                  1
+                )
+              : _vm._e()
+          ],
+          2
         )
       ])
     ]),
@@ -38195,7 +38258,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "main-container" }, [_vm._v("\n  Profile\n")])
+  return _c("div", { staticClass: "main-container" }, [
+    _c("p", [_vm._v(_vm._s(_vm.currentUser.name))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.currentUser.email))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.currentUser.email_verified_at))]),
+    _vm._v(" "),
+    _vm.currentUser.email_verified_at
+      ? _c("p", [_vm._v(_vm._s(_vm.currentUser.created_at))])
+      : _c("p", [_vm._v("Email not verified")])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38502,6 +38575,27 @@ var render = function() {
         ])
       ]
     ),
+    _vm._v(" "),
+    _vm.wrongCredentials
+      ? _c("div", { staticClass: "error-message" }, [
+          _vm._v("    \n    Email or password invalid!\n  ")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.emailVerified
+      ? _c("div", { staticClass: "error-message" }, [
+          _c(
+            "p",
+            [
+              _vm._v("\n      Email not verified!\n      "),
+              _c("router-link", { attrs: { to: "/register" } }, [
+                _vm._v("\n        Resend link\n      ")
+              ])
+            ],
+            1
+          )
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "single-line-container" }, [
       _c(
@@ -55276,7 +55370,7 @@ var app = new Vue({
 /*!******************************!*\
   !*** ./resources/js/auth.js ***!
   \******************************/
-/*! exports provided: registerUser, login, resetPassword, getLoggedinUser */
+/*! exports provided: registerUser, login, resetPassword, sendVerificationLink, getLoggedinUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55284,6 +55378,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerUser", function() { return registerUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetPassword", function() { return resetPassword; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendVerificationLink", function() { return sendVerificationLink; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLoggedinUser", function() { return getLoggedinUser; });
 function registerUser(credentials) {
   return new Promise(function (res, rej) {
@@ -55306,6 +55401,22 @@ function login(credentials) {
 function resetPassword(credentials) {
   return new Promise(function (res, rej) {
     axios.post('/api/password/email', credentials).then(function (response) {
+      return res(response);
+    })["catch"](function (err) {
+      return rej(err);
+    });
+  });
+}
+function sendVerificationLink() {
+  var _this = this;
+
+  return new Promise(function (res, rej) {
+    var config = {
+      headers: {
+        Authorization: 'Bearer ' + _this.getLoggedinUser().token
+      }
+    };
+    axios.post('/api/email/resend', config).then(function (response) {
       return res(response);
     })["catch"](function (err) {
       return rej(err);
@@ -56158,10 +56269,6 @@ var routes = [{
   path: '/item/:id',
   name: 'item',
   component: _components_item_Item__WEBPACK_IMPORTED_MODULE_10__["default"]
-}, {
-  path: '/register',
-  name: 'register',
-  component: _components_auth_Register_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   mode: 'history',
@@ -56169,21 +56276,27 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 
 });
 router.beforeEach(function (to, from, next) {
-  //!!store.getters.isLoggedIn)
   if (['login', 'register'].includes(to.name)) {
     if (_store__WEBPACK_IMPORTED_MODULE_1__["default"].state.isLoggedIn) next('dashboard');
+  } else {
+    next();
   }
 
   if (['profile'].includes(to.name)) {
     if (!_store__WEBPACK_IMPORTED_MODULE_1__["default"].state.isLoggedIn) next('login');
+  } else {
+    next();
   }
-  /*     if (!!store.getters.isLoggedIn) {
-      next('/login')
-  } */
-  // else next()
 
-
-  next();
+  if (['items'].includes(to.name)) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_1__["default"].state.currentUser) {
+      next('login');
+    } else {
+      if (_store__WEBPACK_IMPORTED_MODULE_1__["default"].state.currentUser.is_admin == 0) next('dashboard');
+    }
+  } else {
+    next();
+  }
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 
@@ -56221,6 +56334,20 @@ var user = Object(_auth__WEBPACK_IMPORTED_MODULE_0__["getLoggedinUser"])();
     currentUser: function currentUser(state) {
       return state.currentUser;
     },
+    currentUserIsAdmin: function currentUserIsAdmin(state) {
+      if (state.currentUser) {
+        return state.currentUser.is_admin == 1;
+      }
+
+      return false;
+    },
+    currentUserIsVerified: function currentUserIsVerified(state) {
+      if (state.currentUser) {
+        return state.currentUser.email_verified_at;
+      }
+
+      return false;
+    },
     authError: function authError(state) {
       return state.auth_error;
     },
@@ -56243,7 +56370,6 @@ var user = Object(_auth__WEBPACK_IMPORTED_MODULE_0__["getLoggedinUser"])();
       state.currentUser = Object.assign({}, payload.user, {
         token: payload.access_token
       });
-      console.log(state.currentUser);
       localStorage.setItem('user', JSON.stringify(state.currentUser));
     },
     loginFailed: function loginFailed(state, payload) {

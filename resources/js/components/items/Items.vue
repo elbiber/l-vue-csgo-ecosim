@@ -54,8 +54,11 @@ export default {
 
     },
     created() {
+        const config = {
+            headers: { Authorization: 'Bearer ' + this.$store.getters.currentUser.token }
+        }
         this.loading = true
-        axios.get('/api/available-items').then(response => {
+        axios.get('/api/items', config).then(response => {
             this.items = response.data.data
             const types = ['pistol', 'heavy', 'smg', 'rifle', 'grenade', 'equipment']
             types.forEach(type => {

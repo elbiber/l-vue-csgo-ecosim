@@ -60,11 +60,6 @@ const routes = [
         path: '/item/:id',
         name: 'item',
         component: Item
-    },
-    {
-        path: '/register',
-        name: 'register',
-        component: Register
     }
 ]
 
@@ -72,21 +67,27 @@ const router = new VueRouter({
     mode: 'history',
     routes // short for `routes: routes`
 })
-router.beforeEach((to, from, next) => {
-    //!!store.getters.isLoggedIn)
-    
-    
+router.beforeEach((to, from, next) => {    
     
     if(['login', 'register'].includes(to.name)){
         if(store.state.isLoggedIn) next('dashboard')        
+    } else {
+        next()
     }
     if(['profile'].includes(to.name)){
         if(!store.state.isLoggedIn) next('login')        
+    } else {
+        next()
     }
-    /*     if (!!store.getters.isLoggedIn) {
-        next('/login')
-    } */
-    // else next()
-    next()
+    if(['items'].includes(to.name)){
+        if(!store.state.currentUser){
+            next('login')
+        } else {
+            if(store.state.currentUser.is_admin == 0) next('dashboard')  
+        }          
+    } else {
+        next()
+    }
+    
 })
 export default router

@@ -25,6 +25,16 @@ export function resetPassword(credentials){
             .catch(err => rej(err))
     })
 }
+export function sendVerificationLink(){
+    return new Promise((res,rej)=>{
+        const config = {
+            headers: { Authorization: 'Bearer ' + this.getLoggedinUser().token }
+        }
+        axios.post('/api/email/resend', config)
+            .then(response =>  res(response))
+            .catch(err => rej(err))
+    })
+}
 
 export function getLoggedinUser(){
     const userStr = localStorage.getItem('user')
