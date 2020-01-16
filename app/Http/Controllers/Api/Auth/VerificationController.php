@@ -74,7 +74,8 @@ class VerificationController extends Controller
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
-        return response(['message'=>'Successfully verified']);
+        // return response(['message'=>'Successfully verified']);
+        return redirect('login?verified=true');
     }
    
 }

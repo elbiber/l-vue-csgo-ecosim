@@ -25,12 +25,13 @@ export function resetPassword(credentials){
             .catch(err => rej(err))
     })
 }
-export function sendVerificationLink(){
+export function sendVerificationLink(token){
     return new Promise((res,rej)=>{
+        
         const config = {
-            headers: { Authorization: 'Bearer ' + this.getLoggedinUser().token }
+            headers: { Authorization: 'Bearer ' + token }
         }
-        axios.post('/api/email/resend', config)
+        axios.get('/api/email/resend', config)
             .then(response =>  res(response))
             .catch(err => rej(err))
     })

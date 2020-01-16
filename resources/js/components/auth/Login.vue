@@ -45,16 +45,23 @@
         Login
       </button>
     </form>
-    <div v-if="wrongCredentials" class="error-message">    
+    <div
+      v-if="wrongCredentials"
+      class="error-message"
+    >    
       Email or password invalid!
     </div>
-    <div v-if="!emailVerified" class="error-message">    
-        <p>
-        Email not verified!
-        <router-link to="/register">
-          Resend link
-        </router-link>
-      </p>
+    <div
+      v-if="!emailVerified"
+      class="error-message"
+    >
+      Email not verified! Check your Email
+    </div>
+    <div
+      v-if="justVerifiedEmail"
+      class="success-message"
+    >
+      Email successfully verified
     </div>
     <div class="single-line-container">
       <p>
@@ -68,7 +75,7 @@
 </template>
 
 <script>
-import { login } from './../../auth'
+import { login, sendVerificationLink } from './../../auth'
 export default {
     data() {
         return {
@@ -89,9 +96,15 @@ export default {
             return 401 === this.status
         },
         currentUser() {
-            // console.log(this.$store.getters.currentUser.created_at)
             return this.$store.getters.currentUser
+        },
+        justVerifiedEmail() {
+            return this.$route.query.verified
         }
+    },
+    created() {
+        console.log(this.$route.query)
+        console.log('hello')
     },
     methods: {
         authenticate(){
@@ -100,17 +113,19 @@ export default {
             login(this.$data.formLogin)
                 .then(response => {
                     this.$store.commit('loginSuccess', response.data)
-                    console.log(this.currentUser.email_verified_at)
                     if(this.currentUser.email_verified_at) {
                         this.$router.push({ path: '/dashboard' })
                     } else {
+                        // eslint-disable-next-line no-console
+                        console.log(response.data.access_token)
                         this.emailVerified = false
-                        sendVerificationLink()
+                        sendVerificationLink(response.data.access_token)
                         this.$store.commit('logout')
                     }
-                    
                 })
                 .catch(error => {
+                    // eslint-disable-next-line no-console
+                    console.log(error)
                     if (422 === error.response.status) {
                         this.errors = error.response.data.errors
                     }
