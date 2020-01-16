@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 class ItemTest extends TestCase
 {
     use RefreshDatabase;
-    // use WithoutMiddleware;
+    use WithoutMiddleware;
     public function test_can_create_item()
     {
         $user = $this->createDummyUser();
