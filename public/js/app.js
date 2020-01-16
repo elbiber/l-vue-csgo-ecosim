@@ -2113,6 +2113,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2275,10 +2277,6 @@ __webpack_require__.r(__webpack_exports__);
     justVerifiedEmail: function justVerifiedEmail() {
       return this.$route.query.verified;
     }
-  },
-  created: function created() {
-    console.log(this.$route.query);
-    console.log('hello');
   },
   methods: {
     authenticate: function authenticate() {
@@ -2567,7 +2565,12 @@ __webpack_require__.r(__webpack_exports__);
     createItem: function createItem() {
       var _this = this;
 
-      axios.post('/api/available-items', this.item).then(function (response) {
+      var config = {
+        headers: {
+          Authorization: 'Bearer ' + this.$store.getters.currentUser.token
+        }
+      };
+      axios.post('/api/items', this.item, config).then(function (response) {
         _this.status = response.status;
       })["catch"](function (error) {
         if (422 === error.response.status) {
@@ -38416,7 +38419,7 @@ var render = function() {
               return _c(
                 "div",
                 { key: "email" + index, staticClass: "invalid-feedback" },
-                [_vm._v("\n          " + _vm._s(error) + "\n        ")]
+                [_vm._v("\n        " + _vm._s(error) + "\n      ")]
               )
             })
           ],
@@ -38424,20 +38427,20 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("button", { attrs: { type: "submit" } }, [
-          _vm._v("\n        Send password reset email\n      ")
+          _vm._v("\n      Send password reset email\n    ")
         ])
       ]
     ),
     _vm._v(" "),
     _vm.hasTooManyRequests
       ? _c("div", { staticClass: "error-message" }, [
-          _vm._v("    \n          Too many requests. Try again later.\n    ")
+          _vm._v("    \n    Too many requests. Try again later.\n  ")
         ])
       : _vm._e(),
     _vm._v(" "),
     _vm.emailSent
       ? _c("div", { staticClass: "success-message" }, [
-          _vm._v("    \n      Reset link sent successfully!\n    ")
+          _vm._v("    \n    Reset link sent successfully!\n  ")
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -38446,9 +38449,9 @@ var render = function() {
         "p",
         { staticClass: "is-invalid" },
         [
-          _vm._v("\n        New to CSGO-Ecosim?\n        "),
+          _vm._v("\n      New to CSGO-Ecosim?\n      "),
           _c("router-link", { attrs: { to: "/register" } }, [
-            _vm._v("\n          Create an Account\n        ")
+            _vm._v("\n        Create an Account\n      ")
           ])
         ],
         1

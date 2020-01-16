@@ -180,7 +180,10 @@ export default {
     },
     methods: {
         createItem() {
-            axios.post('/api/available-items', this.item)
+            const config = {
+                headers: { Authorization: 'Bearer ' + this.$store.getters.currentUser.token }
+            }
+            axios.post('/api/items', this.item, config)
                 .then(response => {
                     this.status = response.status
                 })

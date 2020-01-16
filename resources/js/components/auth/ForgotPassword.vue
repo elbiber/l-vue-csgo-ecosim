@@ -29,13 +29,15 @@
       </button>
     </form>
     <div
-v-if="hasTooManyRequests"
-class="error-message">    
-          Too many requests. Try again later.
+      v-if="hasTooManyRequests"
+      class="error-message"
+    >    
+      Too many requests. Try again later.
     </div>
     <div
-v-if="emailSent"
-      class="success-message">    
+      v-if="emailSent"
+      class="success-message"
+    >    
       Reset link sent successfully!
     </div>
     <div class="single-line-container">

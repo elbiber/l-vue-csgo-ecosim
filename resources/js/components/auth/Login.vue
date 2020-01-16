@@ -102,10 +102,6 @@ export default {
             return this.$route.query.verified
         }
     },
-    created() {
-        console.log(this.$route.query)
-        console.log('hello')
-    },
     methods: {
         authenticate(){
             this.$store.dispatch('login')
